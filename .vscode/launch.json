@@ -6,7 +6,7 @@
 	"configurations": [
 		{
 			"command": "npm start",
-			"cwd": "${workspaceFolder}/refresher",
+			"cwd": "${workspaceFolder}/how-to-ng",
 			"name": "Run npm start",
 			"request": "launch",
 			"type": "node-terminal"
@@ -16,7 +16,7 @@
 			"request": "launch",
 			"name": "Edge - localhost 4200",
 			"url": "http://localhost:4200",
-			"webRoot": "${workspaceFolder}/refresher/src"
+			"webRoot": "${workspaceFolder}/how-to-ng/src"
 		}
 	]
 }
