@@ -1,7 +1,7 @@
 {
   "name": "how-to-ng",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "repository": "https://github.com/Wolven531/how-to-ng",
   "license": "MIT",
@@ -43,8 +43,10 @@
     "karma-coverage": "^2.0.3",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.5.4",
+    "node-sass": "^5.0.0",
     "protractor": "^7.0.0",
     "puppeteer": "8.0.0",
+    "resolve-url-loader": "^3.1.2",
     "ts-node": "^9.1.1",
     "tslint": "^6.1.3"
   },
