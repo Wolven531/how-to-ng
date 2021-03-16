@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "refresher": {
+    "how-to-ng": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/refresher",
+            "outputPath": "dist/how-to-ng",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "refresher:build"
+            "browserTarget": "how-to-ng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "refresher:build:production"
+              "browserTarget": "how-to-ng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "refresher:build"
+            "browserTarget": "how-to-ng:build"
           }
         },
         "test": {
@@ -113,15 +113,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "refresher:serve"
+            "devServerTarget": "how-to-ng:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "refresher:serve:production"
+              "devServerTarget": "how-to-ng:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "refresher"
+  "defaultProject": "how-to-ng"
 }
