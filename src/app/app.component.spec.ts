@@ -26,7 +26,7 @@ describe('AppComponent', () => {
 		expect(component).toBeTruthy()
 	})
 
-	it(`has title 'refresher'`, () => {
-		expect(component.title).toEqual('refresher')
+	it(`has title 'how-to-ng'`, () => {
+		expect(component.title).toEqual('how-to-ng')
 	})
 })
