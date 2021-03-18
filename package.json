@@ -62,13 +62,15 @@
   "scripts": {
     "build": "ng build --prod",
     "build:aot": "ng build --aot --prod",
+    "build:ssr": "ng build --prod && ng run how-to-ng:server:production",
+    "dev:ssr": "ng run how-to-ng:serve-ssr",
+    "postinstall":"npm run build:ssr",
+    "prerender": "ng run how-to-ng:prerender",
     "prestart": "npm install",
     "pretest": "npm install",
     "serve": "ng serve --port 8080 --open",
-    "start": "node server.js",
-    "dev:ssr": "ng run how-to-ng:serve-ssr",
     "serve:ssr": "node dist/how-to-ng/server/main.js",
-    "build:ssr": "ng build --prod && ng run how-to-ng:server:production",
-    "prerender": "ng run how-to-ng:prerender"
+    "start": "node server.js",
+    "start:heroku":"node dist/server"
   }
 }
