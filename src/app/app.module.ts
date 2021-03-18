@@ -22,7 +22,7 @@ import { GameComponent } from './game/game.component'
 		GameComponent,
 	],
 	imports: [
-		BrowserModule,
+		BrowserModule.withServerTransition({ appId: 'serverApp' }),
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
