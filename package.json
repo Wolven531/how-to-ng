@@ -6,7 +6,7 @@
   },
   "name": "how-to-ng",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "repository": "https://github.com/Wolven531/how-to-ng",
   "license": "MIT",
@@ -64,13 +64,13 @@
     "build:aot": "ng build --aot --prod",
     "build:ssr": "ng build --prod && ng run how-to-ng:server:production",
     "dev:ssr": "ng run how-to-ng:serve-ssr",
-    "postinstall":"npm run build:ssr",
+    "//postinstall": "npm run build:ssr",
     "prerender": "ng run how-to-ng:prerender",
     "prestart": "npm install",
     "pretest": "npm install",
     "serve": "ng serve --port 8080 --open",
     "serve:ssr": "node dist/how-to-ng/server/main.js",
     "start": "node server.js",
-    "start:heroku":"node dist/server"
+    "start:heroku": "node dist/server"
   }
 }
