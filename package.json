@@ -2,17 +2,17 @@
   "author": {
     "email": "anthony.williams.cs@gmail.com",
     "name": "Anthony Williams",
-    "url": "https://github.com/Wolven531/ng-refresher.git"
+    "url": "https://github.com/Wolven531/how-to-ng.git"
   },
   "name": "how-to-ng",
   "private": true,
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "",
   "repository": "https://github.com/Wolven531/how-to-ng",
   "license": "MIT",
   "engines": {
     "node": "12.13.1",
-    "npm": "6.12.1"
+    "npm": "6.14.11"
   },
   "dependencies": {
     "@angular/animations": "~11.2.4",
@@ -60,18 +60,18 @@
   },
   "scripts": {
     "build": "ng build --prod",
-    "build:aot": "ng build --aot --prod",
-    "build:ssr": "ng build --prod && ng run how-to-ng:server:production",
-    "dev:ssr": "ng run how-to-ng:serve-ssr",
     "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "//postinstall": "npm run build:ssr",
-    "prerender": "ng run how-to-ng:prerender",
-    "prestart": "npm install",
-    "pretest": "npm install",
     "serve": "ng serve --port 8080 --open",
-    "serve:ssr": "node dist/how-to-ng/server/main.js",
     "start": "node server.js",
-    "start:heroku": "node dist/server"
+    "start:heroku": "node dist/server",
+    "//build:aot": "ng build --aot --prod",
+    "//build:ssr": "ng build --prod && ng run how-to-ng:server:production",
+    "//dev:ssr": "ng run how-to-ng:serve-ssr",
+    "//postinstall": "npm run build:ssr",
+    "//prerender": "ng run how-to-ng:prerender",
+    "//prestart": "npm install",
+    "//pretest": "npm install",
+    "//serve:ssr": "node dist/how-to-ng/server/main.js"
   }
 }
