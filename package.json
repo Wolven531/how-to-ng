@@ -61,7 +61,10 @@
   "scripts": {
     "build": "ng build --prod",
     "heroku-postbuild": "ng build --prod",
+    "heroku-prebuild": "npm i",
     "ng": "ng",
+    "prebuild": "npm install",
+    "prestart": "npm install",
     "serve": "ng serve --port 8080 --open",
     "start": "node server.js",
     "start:heroku": "node dist/server",
@@ -70,7 +73,6 @@
     "//dev:ssr": "ng run how-to-ng:serve-ssr",
     "//postinstall": "npm run build:ssr",
     "//prerender": "ng run how-to-ng:prerender",
-    "//prestart": "npm install",
     "//pretest": "npm install",
     "//serve:ssr": "node dist/how-to-ng/server/main.js"
   }
