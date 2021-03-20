@@ -67,7 +67,7 @@
     "prestart": "npm install",
     "serve": "ng serve --port 8080 --open",
     "start": "node server.js",
-    "start:heroku": "node dist/server",
+    "start:heroku": "node server.js",
     "//build:aot": "ng build --aot --prod",
     "//build:ssr": "ng build --prod && ng run how-to-ng:server:production",
     "//dev:ssr": "ng run how-to-ng:serve-ssr",
