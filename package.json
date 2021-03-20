@@ -64,6 +64,8 @@
     "build:aot": "ng build --aot --prod",
     "build:ssr": "ng build --prod && ng run how-to-ng:server:production",
     "dev:ssr": "ng run how-to-ng:serve-ssr",
+    "heroku-postbuild": "ng build --prod",
+    "ng": "ng",
     "//postinstall": "npm run build:ssr",
     "prerender": "ng run how-to-ng:prerender",
     "prestart": "npm install",
