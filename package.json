@@ -6,8 +6,8 @@
   },
   "name": "how-to-ng",
   "private": true,
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "A repo that demonstrates various Angular techniques (deploy config - Heroku)",
   "repository": "https://github.com/Wolven531/how-to-ng",
   "license": "MIT",
   "engines": {
@@ -54,7 +54,6 @@
     "karma-jasmine-html-reporter": "^1.5.4",
     "protractor": "^7.0.0",
     "puppeteer": "8.0.0",
-    "resolve-url-loader": "^3.1.2",
     "ts-node": "^9.1.1",
     "tslint": "^6.1.3"
   },
