@@ -67,6 +67,7 @@
     "serve": "ng serve --port 8080 --open",
     "start": "node server.js",
     "start:heroku": "node server.js",
+    "write-git-commit-to-file": "git rev-parse HEAD > version.info",
     "//build:aot": "ng build --aot --prod",
     "//build:ssr": "ng build --prod && ng run how-to-ng:server:production",
     "//dev:ssr": "ng run how-to-ng:serve-ssr",
