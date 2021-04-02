@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ApplicationPipesModule } from './application-pipes/application-pipes.module'
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { GameComponent } from './game/game.component'
 import { HeroService } from './hero.service'
 import { HeroModule } from './hero/hero.module'
 import { InMemoryDataService } from './in-memory-data.service'
-import { MessagesComponent } from './messages/messages.component';
-import { GameComponent } from './game/game.component'
+import { MessagesComponent } from './messages/messages.component'
+import { NavbarComponent } from './navbar/navbar.component'
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -20,6 +21,7 @@ import { GameComponent } from './game/game.component'
 		DashboardComponent,
 		MessagesComponent,
 		GameComponent,
+		NavbarComponent,
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'serverApp' }),
