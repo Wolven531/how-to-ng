@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
+import { FormBuilder, FormsModule } from '@angular/forms'
 import { GeoPos } from '../constants'
 import { GameComponent } from './game.component'
 
@@ -8,8 +9,11 @@ describe('GameComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ GameComponent ]
+			declarations: [ GameComponent ],
+			imports: [ FormsModule ],
 		}).compileComponents()
+
+		TestBed.inject(FormBuilder)
 
 		fixture = TestBed.createComponent(GameComponent)
 		component = fixture.componentInstance
