@@ -9,7 +9,26 @@ This repository is used to demonstrate various Angular techniques
 
 ## Scripts
 
-* TBD
+### Important
+
+* `npm run build`
+* `npm run serve`
+* `npm start`
+* `npm test`
+
+### Miscellaneous
+
+* Angular related
+	* `npm run ng`
+* Git related
+	* `npm run write-git-commit-to-file`
+	* `npm run prepare`
+* Heroku related
+	* `npm run heroku-postbuild`
+	* `npm run heroku-prebuild`
+	* `npm run start:heroku`
+* NodeJS / NPM related
+	* `npm run prebuild`
 
 ### Notes
 
