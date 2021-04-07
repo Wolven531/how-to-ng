@@ -65,7 +65,6 @@
     "ng": "ng",
     "prebuild": "npm install",
     "prepare": "husky install",
-    "prestart": "npm install",
     "serve": "ng serve --port 8080 --open",
     "start": "node server.js",
     "start:heroku": "node server.js",
@@ -73,6 +72,7 @@
     "write-git-commit-to-file": "git rev-parse HEAD > version.info && git add --update version.info",
     "//build:aot": "ng build --aot --prod",
     "//postinstall": "npm run build:ssr",
-    "//prerender": "ng run how-to-ng:prerender"
+    "//prerender": "ng run how-to-ng:prerender",
+    "//prestart": "npm install"
   }
 }
