@@ -11,10 +11,10 @@ This repository is used to demonstrate various Angular techniques
 
 ### Important
 
-* `npm run build`
-* `npm run serve`
-* `npm start`
-* `npm test`
+* `npm run build` - Compiles a complete `dist` folder for simple FTP-style deployment
+* `npm run serve` - Starts the application locally on prt 8080 and opens the system's default browser to the application
+* `npm start` - Starts the application locally
+* `npm test` - Runs the unit tests and reports code coverage
 
 ### Miscellaneous
 
