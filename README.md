@@ -21,8 +21,8 @@ This repository is used to demonstrate various Angular techniques
 * Angular related
 	* `npm run ng`
 * Git related
-	* `npm run write-git-commit-to-file`
-	* `npm run prepare`
+	* `npm run write-git-commit-to-file` - used to bump the version listed in version.info (during precommit hook)
+	* `npm run prepare` - used to setup the Husky CLI tool
 * Heroku related
 	* `npm run heroku-postbuild`
 	* `npm run heroku-prebuild`
