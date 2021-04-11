@@ -28,7 +28,7 @@ This repository is used to demonstrate various Angular techniques
 	* `npm run heroku-prebuild` - used by Heroku to install application dependencies
 	* `npm run start:heroku` - used by Heroku to start the application
 * NodeJS / NPM related
-	* `npm run prebuild`
+	* `npm run prebuild` - generic script that installs dependencies prior to a build step
 
 ### Notes
 
