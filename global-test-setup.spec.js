@@ -1,10 +1,16 @@
+let mockDebug
+let mockError
+let mockInfo
+let mockLog
+let mockWarn
+
 // run before any single it() block
 beforeAll(() => {
-	spyOn(window.console, 'debug')
-	spyOn(window.console, 'error')
-	spyOn(window.console, 'info')
-	spyOn(window.console, 'log')
-	spyOn(window.console, 'warn')
+	mockDebug = spyOn(window.console, 'debug')
+	mockError = spyOn(window.console, 'error')
+	mockInfo = spyOn(window.console, 'info')
+	mockLog = spyOn(window.console, 'log')
+	mockWarn = spyOn(window.console, 'warn')
 })
 
 // run after every single it() block
