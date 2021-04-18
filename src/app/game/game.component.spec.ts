@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { BrowserModule } from '@angular/platform-browser'
+import { ReactiveFormsModule } from '@angular/forms'
 import { Map } from 'ol'
 import { GeoCoord, GeoPos } from '../constants'
 import { GameComponent } from './game.component'
