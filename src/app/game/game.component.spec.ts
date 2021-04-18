@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
-import { FormBuilder, FormsModule } from '@angular/forms'
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { BrowserModule } from '@angular/platform-browser'
 import { GeoPos } from '../constants'
 import { GameComponent } from './game.component'
 
@@ -10,10 +12,8 @@ describe('GameComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ GameComponent ],
-			imports: [ FormsModule ],
+			imports: [ ReactiveFormsModule ],
 		}).compileComponents()
-
-		TestBed.inject(FormBuilder)
 
 		fixture = TestBed.createComponent(GameComponent)
 		component = fixture.componentInstance
