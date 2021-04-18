@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
+import { Map } from 'ol'
 import { GeoPos } from '../constants'
 import { GameComponent } from './game.component'
 
@@ -62,6 +63,7 @@ describe('GameComponent', () => {
 		beforeEach(waitForAsync(() => {
 			spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
 
+
 			// spyOn(window.navigator.geolocation, 'getCurrentPosition').and
 			// 	.callFake((success, failure, opts) => {
 			// 		// invoke success callback ourselves w/ fake position object
@@ -86,6 +88,7 @@ describe('GameComponent', () => {
 
 		it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
 			expect(spyUpdateMap).toHaveBeenCalledOnceWith()
+			expect(component.map).toBeInstanceOf(Map)
 			// expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
 			// expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
 			// 	component['handlePositionLoaded'],
