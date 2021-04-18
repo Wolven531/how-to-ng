@@ -58,11 +58,12 @@ describe('GameComponent', () => {
 	})
 
 	describe('invoke ngOnInit() when window.navigator.permissions is granted and getCurrentPosition invokes success callback', () => {
+		let spyGetCurrentPosition: jasmine.Spy
 		let spyUpdateMap: jasmine.Spy
 
 		beforeEach(waitForAsync(() => {
+			spyGetCurrentPosition = spyOn<any>(component, 'getCurrentPosition').and.callThrough()
 			spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
-
 
 			// spyOn(window.navigator.geolocation, 'getCurrentPosition').and
 			// 	.callFake((success, failure, opts) => {
@@ -80,8 +81,8 @@ describe('GameComponent', () => {
 			// 			timestamp: (new Date()).getTime()
 			// 		} as GeoPos)
 			// 	})
-			// spyOn(window.navigator.permissions, 'query').and
-			// 	.returnValue(Promise.resolve<PermissionStatus>({ state: 'granted' } as PermissionStatus))
+			spyOn(window.navigator.permissions, 'query').and
+				.returnValue(Promise.resolve<PermissionStatus>({ state: 'granted' } as PermissionStatus))
 
 			component.ngOnInit()
 		}))
@@ -89,6 +90,8 @@ describe('GameComponent', () => {
 		it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
 			expect(spyUpdateMap).toHaveBeenCalledOnceWith()
 			expect(component.map).toBeInstanceOf(Map)
+
+			expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
 			// expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
 			// expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
 			// 	component['handlePositionLoaded'],
