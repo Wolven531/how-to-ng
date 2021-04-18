@@ -90,6 +90,7 @@ describe('GameComponent', () => {
 						enableHighAccuracy: true,
 					},
 				)
+				// TODO - add assertions for whatever component.handlePositionError() SHOULD do (currently empty)
 			})
 		})
 
@@ -108,9 +109,11 @@ describe('GameComponent', () => {
 				coords: FAKE_COORDS,
 				timestamp: FAKE_TIMESTAMP,
 			}
+			// TODO - replace with assertion for component.map.setView()
 			let spyHandlePositionLoaded: jasmine.Spy
 
 			beforeEach(waitForAsync(() => {
+				// TODO - replace with assertion for component.map.setView()
 				spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
 
 				spyOn(window.navigator.geolocation, 'getCurrentPosition').and
@@ -136,6 +139,7 @@ describe('GameComponent', () => {
 					}
 				)
 
+				// TODO - replace with assertion for component.map.setView()
 				expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
 			})
 		})
