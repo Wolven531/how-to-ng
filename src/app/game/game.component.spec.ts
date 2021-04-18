@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { Map } from 'ol'
-import { GeoPos } from '../constants'
+import { GeoCoord, GeoPos } from '../constants'
 import { GameComponent } from './game.component'
 
 describe('GameComponent', () => {
@@ -58,29 +58,35 @@ describe('GameComponent', () => {
 	})
 
 	describe('invoke ngOnInit() when window.navigator.permissions is granted and getCurrentPosition invokes success callback', () => {
+		const FAKE_COORDS: GeoCoord = {
+			accuracy: 100,
+			altitude: 0,
+			altitudeAccuracy: 100,
+			heading: 1,
+			latitude: 99,
+			longitude: 101,
+			speed: 1,
+		}
+		const FAKE_TIMESTAMP = (new Date()).getTime()
+		const FAKE_GEO_POSITION: GeoPos = {
+			coords: FAKE_COORDS,
+			timestamp: FAKE_TIMESTAMP,
+		}
 		let spyGetCurrentPosition: jasmine.Spy
+		let spyHandlePositionLoaded: jasmine.Spy
 		let spyUpdateMap: jasmine.Spy
 
 		beforeEach(waitForAsync(() => {
 			spyGetCurrentPosition = spyOn<any>(component, 'getCurrentPosition').and.callThrough()
+			spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
 			spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
 
-			// spyOn(window.navigator.geolocation, 'getCurrentPosition').and
-			// 	.callFake((success, failure, opts) => {
-			// 		// invoke success callback ourselves w/ fake position object
-			// 		success({
-			// 			coords: {
-			// 				accuracy: 100,
-			// 				altitude: 0,
-			// 				altitudeAccuracy: 100,
-			// 				heading: 1,
-			// 				latitude: 100,
-			// 				longitude: 100,
-			// 				speed: 1,
-			// 			},
-			// 			timestamp: (new Date()).getTime()
-			// 		} as GeoPos)
-			// 	})
+			spyOn(window.navigator.geolocation, 'getCurrentPosition').and
+				.callFake((success, failure, opts) => {
+					// invoke success callback ourselves w/ fake position object
+					// and component as the `this` context
+					success.apply(component, [ FAKE_GEO_POSITION ])
+				})
 			spyOn(window.navigator.permissions, 'query').and
 				.returnValue(Promise.resolve<PermissionStatus>({ state: 'granted' } as PermissionStatus))
 
@@ -92,6 +98,7 @@ describe('GameComponent', () => {
 			expect(component.map).toBeInstanceOf(Map)
 
 			expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
+			expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
 			// expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
 			// expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
 			// 	component['handlePositionLoaded'],
