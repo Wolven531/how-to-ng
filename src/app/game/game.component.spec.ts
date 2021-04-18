@@ -108,14 +108,10 @@ describe('GameComponent', () => {
 				coords: FAKE_COORDS,
 				timestamp: FAKE_TIMESTAMP,
 			}
-			let spyGetCurrentPosition: jasmine.Spy
 			let spyHandlePositionLoaded: jasmine.Spy
-			let spyUpdateMap: jasmine.Spy
 
 			beforeEach(waitForAsync(() => {
-				spyGetCurrentPosition = spyOn<any>(component, 'getCurrentPosition').and.callThrough()
 				spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
-				spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
 
 				spyOn(window.navigator.geolocation, 'getCurrentPosition').and
 					.callFake((success, failure, opts) => {
@@ -128,12 +124,9 @@ describe('GameComponent', () => {
 			}))
 
 			it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
-				expect(spyUpdateMap).toHaveBeenCalledOnceWith()
 				expect(component.map).toBeInstanceOf(Map)
 
 				expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
-
-				expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
 
 				expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
 					component['handlePositionLoaded'],
