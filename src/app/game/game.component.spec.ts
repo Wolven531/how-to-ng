@@ -55,96 +55,96 @@ describe('GameComponent', () => {
 		})
 	})
 
-	describe('invoke ngOnInit() when window.navigator.permissions is granted and getCurrentPosition invokes failure callback', () => {
-		beforeEach(waitForAsync(() => {
+	describe('when window.navigator.permissions is granted', () => {
+		beforeEach(() => {
 			spyOn(window.navigator.permissions, 'query').and
 				.returnValue(Promise.resolve<PermissionStatus>({ state: 'granted' } as PermissionStatus))
-			spyOn(window.navigator.geolocation, 'getCurrentPosition').and
-				.callFake((success, failure, opts) => {
-					// invoke success callback ourselves w/ mocked GeolocationPositionError object
-					// and component as the `this` context
-					failure.apply(
-						component,
-						[
-							{
-								code: -1,
-								message: '',
-								PERMISSION_DENIED: 0,
-								POSITION_UNAVAILABLE: 1,
-								TIMEOUT: 0,
-							},
-						]
-					)
-				})
-
-			component.ngOnInit()
-		}))
-
-		it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
-			expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
-			expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
-				component['handlePositionLoaded'],
-				component['handlePositionError'],
-				{
-					enableHighAccuracy: true,
-				},
-			)
 		})
-	})
 
-	describe('invoke ngOnInit() when window.navigator.permissions is granted and getCurrentPosition invokes success callback', () => {
-		const FAKE_COORDS: GeoCoord = {
-			accuracy: 100,
-			altitude: 0,
-			altitudeAccuracy: 100,
-			heading: 1,
-			latitude: 99,
-			longitude: 101,
-			speed: 1,
-		}
-		const FAKE_TIMESTAMP = (new Date()).getTime()
-		const FAKE_GEO_POSITION: GeoPos = {
-			coords: FAKE_COORDS,
-			timestamp: FAKE_TIMESTAMP,
-		}
-		let spyGetCurrentPosition: jasmine.Spy
-		let spyHandlePositionLoaded: jasmine.Spy
-		let spyUpdateMap: jasmine.Spy
+		describe('invoke ngOnInit() when getCurrentPosition invokes failure callback', () => {
+			const FAKE_GEO_ERROR = {
+				code: -1,
+				message: '',
+				PERMISSION_DENIED: 0,
+				POSITION_UNAVAILABLE: 1,
+				TIMEOUT: 0,
+			}
 
-		beforeEach(waitForAsync(() => {
-			spyGetCurrentPosition = spyOn<any>(component, 'getCurrentPosition').and.callThrough()
-			spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
-			spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
+			beforeEach(waitForAsync(() => {
+				spyOn(window.navigator.geolocation, 'getCurrentPosition').and
+					.callFake((success, failure, opts) => {
+						// invoke success callback ourselves w/ mocked GeolocationPositionError object
+						// and component as the `this` context
+						failure.apply(component, [ FAKE_GEO_ERROR ])
+					})
 
-			spyOn(window.navigator.permissions, 'query').and
-				.returnValue(Promise.resolve<PermissionStatus>({ state: 'granted' } as PermissionStatus))
-			spyOn(window.navigator.geolocation, 'getCurrentPosition').and
-				.callFake((success, failure, opts) => {
-					// invoke success callback ourselves w/ fake position object
-					// and component as the `this` context
-					success.apply(component, [ FAKE_GEO_POSITION ])
-				})
+				component.ngOnInit()
+			}))
 
-			component.ngOnInit()
-		}))
+			it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
+				expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
+				expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
+					component['handlePositionLoaded'],
+					component['handlePositionError'],
+					{
+						enableHighAccuracy: true,
+					},
+				)
+			})
+		})
 
-		it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
-			expect(spyUpdateMap).toHaveBeenCalledOnceWith()
-			expect(component.map).toBeInstanceOf(Map)
+		describe('invoke ngOnInit() when getCurrentPosition invokes success callback', () => {
+			const FAKE_COORDS: GeoCoord = {
+				accuracy: 100,
+				altitude: 0,
+				altitudeAccuracy: 100,
+				heading: 1,
+				latitude: 99,
+				longitude: 101,
+				speed: 1,
+			}
+			const FAKE_TIMESTAMP = (new Date()).getTime()
+			const FAKE_GEO_POSITION: GeoPos = {
+				coords: FAKE_COORDS,
+				timestamp: FAKE_TIMESTAMP,
+			}
+			let spyGetCurrentPosition: jasmine.Spy
+			let spyHandlePositionLoaded: jasmine.Spy
+			let spyUpdateMap: jasmine.Spy
 
-			expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
+			beforeEach(waitForAsync(() => {
+				spyGetCurrentPosition = spyOn<any>(component, 'getCurrentPosition').and.callThrough()
+				spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
+				spyUpdateMap = spyOn<any>(component, 'updateMap').and.callThrough()
 
-			expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
+				spyOn(window.navigator.geolocation, 'getCurrentPosition').and
+					.callFake((success, failure, opts) => {
+						// invoke success callback ourselves w/ fake position object
+						// and component as the `this` context
+						success.apply(component, [ FAKE_GEO_POSITION ])
+					})
 
-			expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
-				component['handlePositionLoaded'],
-				component['handlePositionError'],
-				{
-					enableHighAccuracy: true,
-				}
-			)
+				component.ngOnInit()
+			}))
 
-			expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
+			it('invokes window.navigator.geolocation.getCurrentPosition() properly', () => {
+				expect(spyUpdateMap).toHaveBeenCalledOnceWith()
+				expect(component.map).toBeInstanceOf(Map)
+
+				expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
+
+				expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
+
+				expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
+					component['handlePositionLoaded'],
+					component['handlePositionError'],
+					{
+						enableHighAccuracy: true,
+					}
+				)
+
+				expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
+			})
 		})
 	})
 })
