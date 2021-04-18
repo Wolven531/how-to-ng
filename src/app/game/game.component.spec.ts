@@ -97,16 +97,19 @@ describe('GameComponent', () => {
 			expect(spyUpdateMap).toHaveBeenCalledOnceWith()
 			expect(component.map).toBeInstanceOf(Map)
 
+			expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
+
 			expect(spyGetCurrentPosition).toHaveBeenCalledOnceWith()
+
+			expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
+				component['handlePositionLoaded'],
+				component['handlePositionError'],
+				{
+					enableHighAccuracy: true,
+				}
+			)
+
 			expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
-			// expect(window.navigator.permissions.query).toHaveBeenCalledOnceWith({ name: 'geolocation' })
-			// expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalledOnceWith(
-			// 	component['handlePositionLoaded'],
-			// 	component['handlePositionError'],
-			// 	{
-			// 		enableHighAccuracy: true,
-			// 	}
-			// )
 		})
 	})
 
