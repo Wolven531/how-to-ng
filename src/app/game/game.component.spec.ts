@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { Map } from 'ol'
+import { Map, View } from 'ol'
 import { GeoCoord, GeoPos } from '../constants'
 import { GameComponent } from './game.component'
 
@@ -109,15 +109,13 @@ describe('GameComponent', () => {
 				coords: FAKE_COORDS,
 				timestamp: FAKE_TIMESTAMP,
 			}
-			// TODO - replace with assertion for component.map.setView()
-			let spyHandlePositionLoaded: jasmine.Spy
+			let spySetView: jasmine.Spy
 
 			beforeEach(waitForAsync(() => {
-				// TODO - replace with assertion for component.map.setView()
-				spyHandlePositionLoaded = spyOn<any>(component, 'handlePositionLoaded').and.callThrough()
-
 				spyOn(window.navigator.geolocation, 'getCurrentPosition').and
 					.callFake((success, failure, opts) => {
+						// must set spy here, so that map exists
+						spySetView = spyOn(component.map, 'setView')
 						// invoke success callback ourselves w/ fake position object
 						// and component as the `this` context
 						success.apply(component, [ FAKE_GEO_POSITION ])
@@ -139,8 +137,15 @@ describe('GameComponent', () => {
 					}
 				)
 
-				// TODO - replace with assertion for component.map.setView()
-				expect(spyHandlePositionLoaded).toHaveBeenCalledOnceWith(FAKE_GEO_POSITION)
+				expect(spySetView).toHaveBeenCalledTimes(1)
+
+				const paramPassed: View = spySetView.calls.mostRecent().args[0]
+
+				expect(paramPassed.getCenter()).toEqual([
+					FAKE_GEO_POSITION.coords.longitude,
+					FAKE_GEO_POSITION.coords.latitude,
+				])
+				expect(paramPassed.getZoom()).toBe(5)
 			})
 		})
 	})
