@@ -33,3 +33,10 @@ This repository is used to demonstrate various Angular techniques
 ### Notes
 
 This project was seeded [using this guide](https://elements.heroku.com/buttons/pbraswell/heroku-angular-seed)
+
+#### TODO
+
+* Improve navigation (add nav items to new components)
+* Hook up address form on Game component to address form
+* Add nicer intro page (since site is live)
+* Add 404 page
