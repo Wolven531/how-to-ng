@@ -13,6 +13,7 @@ import { HeroModule } from './hero/hero.module'
 import { InMemoryDataService } from './in-memory-data.service'
 import { MessagesComponent } from './messages/messages.component'
 import { NavbarComponent } from './navbar/navbar.component'
+import { NotFoundComponent } from './not-found/not-found.component'
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -22,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 		MessagesComponent,
 		GameComponent,
 		NavbarComponent,
+		NotFoundComponent,
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'serverApp' }),
