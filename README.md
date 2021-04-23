@@ -39,4 +39,3 @@ This project was seeded [using this guide](https://elements.heroku.com/buttons/p
 * Improve navigation (add nav items to new components)
 * Hook up address form on Game component to address form
 * Add nicer intro page (since site is live)
-* Add 404 page
