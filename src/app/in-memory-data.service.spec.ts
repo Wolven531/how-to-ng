@@ -30,4 +30,16 @@ describe('InMemoryDataService', () => {
 			})
 		})
 	})
+
+	describe('genId() w/ empty array', () => {
+		let actual: number
+
+		beforeEach(() => {
+			actual = service.genId([])
+		})
+
+		it('returns default ID value (of 11)', () => {
+			expect(actual).toBe(11)
+		})
+	})
 })
