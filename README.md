@@ -34,6 +34,8 @@ This repository is used to demonstrate various Angular techniques
 
 This project was seeded [using this guide](https://elements.heroku.com/buttons/pbraswell/heroku-angular-seed)
 
+Current pipeline status - [![pipeline status](https://gitlab.com/Wolven531/how-to-ng/badges/main/pipeline.svg)](https://gitlab.com/Wolven531/how-to-ng/-/commits/main)
+
 #### TODO
 
 * Improve navigation (add nav items to new components)
